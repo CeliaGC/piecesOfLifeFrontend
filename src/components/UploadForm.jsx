@@ -106,7 +106,7 @@ function UpLoadForm() {
                    </div>
                    </Alert>
               </Form> 
-              <button onClick={()=> widgetRef.current.open()}>Upload</button>
+              <Button style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} variant="secondary" onClick={()=> widgetRef.current.open()}>Upload image</Button>
 
         </> 
   
