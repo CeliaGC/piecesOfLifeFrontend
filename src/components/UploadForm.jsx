@@ -13,15 +13,17 @@ import { useEffect, useRef } from 'react';
 function UpLoadForm() {
 
     const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm();
+    const [imageUrl, setImageUrl] = useState('');
 
-  const handleImageChange = (event) => {
-    const picture = event.target.input;
-    const reader = new FileReader();
-    reader.readAsDataURL(picture);
-    reader.onload = () => {
-      setValue("imageSource", reader.result);
-    };
-  }
+
+  // const handleImageChange = (event) => {
+  //   const picture = event.target.input;
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(picture);
+  //   reader.onload = () => {
+  //     setValue("imageSource", reader.result);
+  //   };
+  // }
 
   const [showAlert, setShowAlert] = useState(false);
 
@@ -38,18 +40,37 @@ function UpLoadForm() {
 
 }
 
-  const cloudinaryRef = useRef();
-  const widgetRef = useRef();
-  useEffect(() => {
-    cloudinaryRef.current = window.cloudinary;
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName:'dvx5np4ma',
-      uploadPreset:'m2bwuxr6'
-    }, function (error, result){
-      console.log(result.info.secure_url)
-    });
+  // const cloudinaryRef = useRef();
+  // const widgetRef = useRef();
+  // useEffect(() => {
+  //   cloudinaryRef.current = window.cloudinary;
+  //   widgetRef.current = cloudinaryRef.current.createUploadWidget({
+  //     cloudName:'dvx5np4ma',
+  //     uploadPreset:'m2bwuxr6'
+  //   }, function (error, result){
+  //     const url = result.info.secure_url
+  //     console.log(url)
+  //     setImageUrl(url)
+  //   });
   
-  }, [])
+  // }, [])
+
+  const handleUploadClick = () => {
+    const widget = window.cloudinary.createUploadWidget({
+        cloudName: 'dvx5np4ma',
+        uploadPreset: 'm2bwuxr6'
+    }, (error, result) => {
+        if (result.event === "success") {
+            const url = result.info.secure_url;
+            console.log(url);
+            setImageUrl(url);
+            setValue('imageSource', url);
+        }
+    });
+
+    widget.open();  // Abrir el widget
+};
+
 
 
    return(
@@ -79,7 +100,9 @@ function UpLoadForm() {
   
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label htmlFor="ImageSource">Image Source</Form.Label>
-          <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)", width:"80%",marginLeft:"10%"}} {...register("ImageSource", { required: true })} name="ImageSource" placeholder='URL' onChange={handleImageChange}/>
+          <Button style={{borderRadius:"0.625rem"}} variant="secondary" onClick={()=> handleUploadClick()}>Select image</Button>
+          <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)", width:"80%",marginLeft:"10%"}} {...register("ImageSource", { required: true })}type='text' readOnly name="ImageSource" value={imageUrl}/>
+          
           {errors.terms && <span>Debe rellenar este campo</span>}
         </Form.Group>
   
@@ -106,7 +129,7 @@ function UpLoadForm() {
                    </div>
                    </Alert>
               </Form> 
-              <Button style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} variant="secondary" onClick={()=> widgetRef.current.open()}>Upload image</Button>
+             
 
         </> 
   
