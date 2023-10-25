@@ -10,7 +10,7 @@ export const ImageHandler = {
         let image = {
             "imageName": newImage.imageName,  
             "category": newImage.category,
-            "ImageSource": newImage.ImageSource,
+            "imageSource": newImage.imageSource,
         }
         return ImageService.submitImage(image);
         
