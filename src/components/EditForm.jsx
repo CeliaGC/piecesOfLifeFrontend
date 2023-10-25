@@ -9,8 +9,8 @@ import Form from 'react-bootstrap/Form';
 
 const EditForm = () => {
   const { image } = useLoaderData();
-  console.log(image);
   const [updatedImage, setUpdatedImage] = useState(image[0]);
+  const [imageUrl, setImageUrl] = useState('');
 
   const handleFieldChange = (event) => {
     const { name, value } = event.target;
@@ -19,7 +19,25 @@ const EditForm = () => {
       [name]: value,
     });
   };
-
+           const handleUploadClick = () => {
+           const widget = window.cloudinary.createUploadWidget({
+                cloudName: 'dvx5np4ma',
+                uploadPreset: 'm2bwuxr6'
+            }, (error, result) => {
+                if (result.event === "success") {
+                    const url = result.info.secure_url;
+                    console.log(url);
+                    setImageUrl(url);
+                    setUpdatedImage(prev => ({
+                      ...prev,
+                      imageSource: url
+                  }))
+                }
+            })
+           widget.open();
+          };
+        
+           
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedData = { ...image, ...updatedImage };
@@ -35,6 +53,7 @@ const EditForm = () => {
            const handleAlertClose = () => {
                setShowAlert(false);
            }
+
 
 
     return (
@@ -63,11 +82,23 @@ const EditForm = () => {
                     </select>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      {/* >
         <Form.Label htmlFor="imageSource">Image Source</Form.Label>
         <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)", width:"80%",marginLeft:"10%"}} name="imageSource" value={updatedImage.imageSource} />
-      </Form.Group>
+      </Form.Group> */}
 
+      <Form.Group className="mb-3" controlId="imageSource">
+       <Form.Label htmlFor="imageSource"></Form.Label>
+      <Button style={{borderRadius:"0.625rem"}} variant="secondary" onClick={()=> handleUploadClick()}>Select image</Button>
+          <Form.Control style={{border: 0, backgroundColor:"transparent", width:"80%",marginLeft:"10%"}} 
+          type='text'
+          name="imageSource"
+          value={imageUrl} 
+          placeholder={updatedImage.imageSource}
+          readOnly
+          onChange={handleFieldChange}
+          />
+      </Form.Group>
       <Button style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} variant="secondary" type="submit" onClick={handleAddClick}>
         Submit
       </Button>

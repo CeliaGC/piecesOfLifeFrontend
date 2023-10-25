@@ -77,7 +77,7 @@ console.log(data)
         <Form.Group className="mb-3" controlId="imageSource">
           <Form.Label htmlFor="imageSource"></Form.Label>
           <Button style={{borderRadius:"0.625rem"}} variant="secondary" onClick={()=> handleUploadClick()}>Select image</Button>
-          <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)", width:"80%",marginLeft:"10%"}} {...register("imageSource", { required: true })}type='text' readOnly name="imageSource" value={imageUrl}/>
+          <Form.Control style={{border: 0, backgroundColor:"transparent", width:"80%",marginLeft:"10%"}} {...register("imageSource", { required: true })}type='text' readOnly name="imageSource" value={imageUrl}/>
           
           {errors.imageSource && <span>Debe rellenar este campo</span>}
         </Form.Group>
