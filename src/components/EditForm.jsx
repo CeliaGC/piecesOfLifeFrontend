@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Swal from 'sweetalert2';
 
 
 const EditForm = () => {
@@ -42,17 +43,30 @@ const EditForm = () => {
     event.preventDefault();
     const updatedData = { ...image, ...updatedImage };
     const { id } = image[0];
-    ImageHandler.updateImage(id, updatedData);
+
+
+    if (!updatedData.imageName || !updatedData.category|| !updatedData.imageSource){
+      Swal.fire('Must fill every field')
+    }else{
+
+    ImageHandler.updateImage(id, updatedData)
+    .then(response => {
+      if (response.status === 200) {
+          Swal.fire('Success', 'Image added successfully!', 'success');
+      } else {
+          // Puedes mostrar un mensaje más genérico o usar response.data para mostrar un mensaje específico
+          Swal.fire('Error', 'Failed to add image.', 'error');
+      }
+  })
+  .catch(error => {
+      Swal.fire('Error', 'An error occurred while adding the image.', 'error');
+  });}
+
+
+
+
+   
   };
-
-  const [showAlert, setShowAlert] = useState(false);
-
-           const handleAddClick = () => {
-               setShowAlert(true);
-           }
-           const handleAlertClose = () => {
-               setShowAlert(false);
-           }
 
 
 
@@ -82,11 +96,6 @@ const EditForm = () => {
                     </select>
       </Form.Group>
 
-      {/* >
-        <Form.Label htmlFor="imageSource">Image Source</Form.Label>
-        <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)", width:"80%",marginLeft:"10%"}} name="imageSource" value={updatedImage.imageSource} />
-      </Form.Group> */}
-
       <Form.Group className="mb-3" controlId="imageSource">
        <Form.Label htmlFor="imageSource"></Form.Label>
       <Button style={{borderRadius:"0.625rem"}} variant="secondary" onClick={()=> handleUploadClick()}>Select image</Button>
@@ -99,7 +108,7 @@ const EditForm = () => {
           onChange={handleFieldChange}
           />
       </Form.Group>
-      <Button style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} variant="secondary" type="submit" onClick={handleAddClick}>
+      <Button style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} variant="secondary" type="submit">
         Submit
       </Button>
 
@@ -108,19 +117,6 @@ const EditForm = () => {
         Back to Gallery
       </Button>
       </Link>
-
-                <Alert show={showAlert} variant="success" onClose={handleAlertClose} dismissible>
-                <Alert.Heading>Image updated</Alert.Heading>
-                 <p>
-                   Enjoy your gallery
-                 </p>
-                 <hr />
-                 <div className="d-flex justify-content-end">
-                   <Button onClick={handleAlertClose} variant="outline-success">
-                     Close
-                   </Button>
-                 </div>
-                 </Alert>
             </Form>
 
           ))}    
@@ -130,3 +126,61 @@ const EditForm = () => {
 
   export default EditForm;
 
+  // const { image } = useLoaderData();
+  // const [updatedImage, setUpdatedImage] = useState(image[0]);
+  // const [imageUrl, setImageUrl] = useState('');
+
+  // const handleFieldChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setUpdatedImage({
+  //     ...updatedImage,
+  //     [name]: value,
+  //   });
+  // };
+  //          const handleUploadClick = () => {
+  //          const widget = window.cloudinary.createUploadWidget({
+  //               cloudName: 'dvx5np4ma',
+  //               uploadPreset: 'm2bwuxr6'
+  //           }, (error, result) => {
+  //               if (result.event === "success") {
+  //                   const url = result.info.secure_url;
+  //                   console.log(url);
+  //                   setImageUrl(url);
+  //                   setUpdatedImage(prev => ({
+  //                     ...prev,
+  //                     imageSource: url
+  //                 }))
+  //               }
+  //           })
+  //          widget.open();
+  //         };
+        
+           
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const updatedData = { ...image, ...updatedImage };
+  //   const { id } = image[0];
+
+
+  //   if (!updatedData.imageName || !updatedData.category|| !updatedData.imageSource){
+  //     Swal.fire('Must fill every field')
+  //   }else{
+
+  //   ImageHandler.updateImage(id, updatedData)
+  //   .then(response => {
+  //     if (response.status === 200) {
+  //         Swal.fire('Success', 'Image added successfully!', 'success');
+  //     } else {
+  //         // Puedes mostrar un mensaje más genérico o usar response.data para mostrar un mensaje específico
+  //         Swal.fire('Error', 'Failed to add image.', 'error');
+  //     }
+  // })
+  // .catch(error => {
+  //     Swal.fire('Error', 'An error occurred while adding the image.', 'error');
+  // });}
+
+
+
+
+   
+  // };

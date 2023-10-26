@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ImageHandler from '../Handler/ImageHandler';
+import Swal from 'sweetalert2';
 
 export default function DetailView() {
   const { id } = useParams();
@@ -19,9 +20,22 @@ export default function DetailView() {
     fetchImage();
   }, [id]);
 
-  const deleteImage = async (id) => {
-    setImage(image.filter((i) => i.id !== id));
-    await ImageHandler.deleteImage(id);
+  const deleteImage = (id) => {
+      Swal.fire({
+      title: 'Are you sure you want to delete this image?',
+      text: 'This action will be permanent.',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+           setImage(image.filter((i) => i.id !== id));
+           ImageHandler.deleteImage(id);
+      }
+    });
+
+       
   };
 
 

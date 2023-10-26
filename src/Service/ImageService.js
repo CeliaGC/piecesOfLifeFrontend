@@ -27,7 +27,7 @@ const apiClient = axios.create({
         axios.delete('https://localhost:7200/Image/Delete?Id=' + id)
     },
     async updateImage(id, updatedImage){
-        await apiClient.patch("/Image/Patch?=" + id, updatedImage)
+        return await apiClient.patch("/Image/Patch?=" + id, updatedImage)
     }
 }
 

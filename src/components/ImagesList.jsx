@@ -7,6 +7,7 @@ import { Col, Row } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import Swal from 'sweetalert2';
 
 
 function ImagesList() {
@@ -51,9 +52,23 @@ let myImages = images;
   console.log(filteredImages)
   console.log(images)
 
-  const deleteImage = async (id) => {
-    setImages(images.filter((i) => i.id !== id));
-    await ImageHandler.deleteImage(id);
+  const deleteImage = (id) => {
+
+    Swal.fire({
+      title: 'Are you sure you want to delete this image?',
+      text: 'This action will be permanent.',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+          setImages(images.filter((i) => i.id !== id));
+          ImageHandler.deleteImage(id);
+      }
+    });
+
+         
 
   };
 

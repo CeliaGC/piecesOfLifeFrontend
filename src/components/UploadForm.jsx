@@ -16,15 +16,7 @@ function UpLoadForm() {
 
     const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm();
     const [imageUrl, setImageUrl] = useState('');
-  // const [showAlert, setShowAlert] = useState(false);
 
-  // const handleAddClick = () => {
-  //   setShowAlert(true);
-  // }
-
-  // const handleAlertClose = () => {
-  //   setShowAlert(false);
-  // }
 
   const onSubmit = (data) => {
    
@@ -44,7 +36,7 @@ function UpLoadForm() {
   .catch(error => {
       Swal.fire('Error', 'An error occurred while adding the image.', 'error');
   });}
-  
+  resetForm()
 }
 
 
@@ -78,8 +70,8 @@ function UpLoadForm() {
         <p>Make sure you fill up every field</p>
         <Form.Group className="mb-3" controlId="imageName">
           <Form.Label htmlFor="imageName">Title</Form.Label>
-          <Form.Control name='imageName' style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} {...register("imageName",)} />
-       {/* {errors.imageName && <span></span>} */}
+          <Form.Control name='imageName' style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} {...register("imageName",)} maxLength={40} />
+       
         </Form.Group>
   
         <Form.Group className="mb-3" controlId="category">
@@ -89,7 +81,7 @@ function UpLoadForm() {
                         <option value="society">Society</option>
                         <option value="science">Science</option>
                       </select>
-                      {/* {errors.category && <span></span>} */}
+                      
         </Form.Group>
   
         <Form.Group className="mb-3" controlId="imageSource">
@@ -97,7 +89,7 @@ function UpLoadForm() {
           <Button style={{borderRadius:"0.625rem"}} variant="secondary" onClick={()=> handleUploadClick()}>Select image</Button>
           <Form.Control style={{border: 0, backgroundColor:"transparent", width:"80%",marginLeft:"10%"}} {...register("imageSource", )}type='text' readOnly name="imageSource" value={imageUrl}/>
           
-          {/* {errors.imageSource && <span></span>} */}
+          
         </Form.Group>
   
         <Button style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} variant="secondary" type="submit">
@@ -109,19 +101,6 @@ function UpLoadForm() {
           Back to Gallery
         </Button>
         </Link>
-  
-        {/* <Alert show={showAlert} variant="success" onClose={handleAlertClose} dismissible>
-                  <Alert.Heading>Image added to you collections</Alert.Heading>
-                   <p>
-                     Enjoy your gallery!
-                   </p>
-                   <hr />
-                   <div className="d-flex justify-content-end">
-                     <Button onClick={handleAlertClose} variant="outline-success">
-                       Close
-                     </Button>
-                   </div>
-                   </Alert> */}
               </Form> 
              
 
