@@ -16,17 +16,22 @@ function UpLoadForm() {
 
     const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm();
     const [imageUrl, setImageUrl] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
+  // const [showAlert, setShowAlert] = useState(false);
 
-  const handleAddClick = () => {
-    setShowAlert(true);
-  }
+  // const handleAddClick = () => {
+  //   setShowAlert(true);
+  // }
 
-  const handleAlertClose = () => {
-    setShowAlert(false);
-  }
+  // const handleAlertClose = () => {
+  //   setShowAlert(false);
+  // }
 
   const onSubmit = (data) => {
+   
+    if (!data.imageName || !data.category|| !data.imageSource){
+      Swal.fire('Must fill every field')
+    }else{
+
     ImageHandler.addImage(data)
     .then(response => {
       if (response.status === 200) {
@@ -38,7 +43,8 @@ function UpLoadForm() {
   })
   .catch(error => {
       Swal.fire('Error', 'An error occurred while adding the image.', 'error');
-  });
+  });}
+  
 }
 
 
@@ -72,29 +78,29 @@ function UpLoadForm() {
         <p>Make sure you fill up every field</p>
         <Form.Group className="mb-3" controlId="imageName">
           <Form.Label htmlFor="imageName">Title</Form.Label>
-          <Form.Control name='imageName' style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} {...register("imageName", { required: true })} />
-       {errors.imageName && <span>Debe rellenar este campo</span>}
+          <Form.Control name='imageName' style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} {...register("imageName",)} />
+       {/* {errors.imageName && <span></span>} */}
         </Form.Group>
   
         <Form.Group className="mb-3" controlId="category">
           <Form.Label htmlFor="category">Collection</Form.Label>
-                      <select style={{borderRadius:"0.0625rem", backgroundColor:"rgba(255, 233, 246, 1)"}}{...register("category", { required: true })} name="category" >
+                      <select style={{borderRadius:"0.0625rem", backgroundColor:"rgba(255, 233, 246, 1)"}}{...register("category", )} name="category" >
                         <option value="nature">Nature</option>
                         <option value="society">Society</option>
                         <option value="science">Science</option>
                       </select>
-                      {errors.category && <span>Debe rellenar este campo</span>}
+                      {/* {errors.category && <span></span>} */}
         </Form.Group>
   
         <Form.Group className="mb-3" controlId="imageSource">
           <Form.Label htmlFor="imageSource"></Form.Label>
           <Button style={{borderRadius:"0.625rem"}} variant="secondary" onClick={()=> handleUploadClick()}>Select image</Button>
-          <Form.Control style={{border: 0, backgroundColor:"transparent", width:"80%",marginLeft:"10%"}} {...register("imageSource", { required: true })}type='text' readOnly name="imageSource" value={imageUrl}/>
+          <Form.Control style={{border: 0, backgroundColor:"transparent", width:"80%",marginLeft:"10%"}} {...register("imageSource", )}type='text' readOnly name="imageSource" value={imageUrl}/>
           
-          {errors.imageSource && <span>Debe rellenar este campo</span>}
+          {/* {errors.imageSource && <span></span>} */}
         </Form.Group>
   
-        <Button style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} variant="secondary" type="submit" onClick={handleAddClick}>
+        <Button style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} variant="secondary" type="submit">
           Submit
         </Button>
   
