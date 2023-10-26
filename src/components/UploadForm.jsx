@@ -64,7 +64,7 @@ console.log(data)
         </Form.Group>
   
         <Form.Group className="mb-3" controlId="category">
-          <Form.Label htmlFor="category">Category</Form.Label>
+          <Form.Label htmlFor="category">Collection</Form.Label>
                       <select style={{borderRadius:"0.0625rem", backgroundColor:"rgba(255, 233, 246, 1)"}}{...register("category", { required: true })} name="category" >
                         <option value="nature">Nature</option>
                         <option value="society">Society</option>
