@@ -5,6 +5,8 @@ import ImageHandler from '../handler/ImageHandler';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -26,7 +28,17 @@ function UpLoadForm() {
 
   const onSubmit = (data) => {
     ImageHandler.addImage(data)
-console.log(data)
+    .then(response => {
+      if (response.status === 200) {
+          Swal.fire('Success', 'Image added successfully!', 'success');
+      } else {
+          // Puedes mostrar un mensaje más genérico o usar response.data para mostrar un mensaje específico
+          Swal.fire('Error', 'Failed to add image.', 'error');
+      }
+  })
+  .catch(error => {
+      Swal.fire('Error', 'An error occurred while adding the image.', 'error');
+  });
 }
 
 
@@ -41,6 +53,7 @@ console.log(data)
             console.log(url);
             setImageUrl(url);
             setValue('imageSource', url);
+          
         }
     });
 
@@ -91,7 +104,7 @@ console.log(data)
         </Button>
         </Link>
   
-        <Alert show={showAlert} variant="success" onClose={handleAlertClose} dismissible>
+        {/* <Alert show={showAlert} variant="success" onClose={handleAlertClose} dismissible>
                   <Alert.Heading>Image added to you collections</Alert.Heading>
                    <p>
                      Enjoy your gallery!
@@ -102,7 +115,7 @@ console.log(data)
                        Close
                      </Button>
                    </div>
-                   </Alert>
+                   </Alert> */}
               </Form> 
              
 
