@@ -13,7 +13,7 @@ function MyNavbar() {
 
     <Navbar style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} bg='secondary' variant='dark' expand="lg">
       <Container>
-        <Navbar.Brand href="http://localhost:5173/">My Fave Images</Navbar.Brand>
+        <Navbar.Brand href="http://localhost:5173/">Pieces of life</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

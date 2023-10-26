@@ -44,9 +44,8 @@ console.log(data)
         }
     });
 
-    widget.open();  // Abrir el widget
-};
-
+    widget.open();
+  }
 
 
    return(

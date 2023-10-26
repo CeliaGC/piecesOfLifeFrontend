@@ -64,7 +64,7 @@ let myImages = images;
     <Row  style={{paddingTop:'1.875rem', paddingBottom:"1.875rem", paddingLeft: "2.5rem"}}>
     <Dropdown>
         <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary" bg="secondary">
-          Category
+          Collections
         </Dropdown.Toggle>
 
         <Dropdown.Menu variant='dark' style={{backgroundColor:"dimgrey"}}>
