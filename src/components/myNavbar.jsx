@@ -11,7 +11,7 @@ function MyNavbar() {
   return (
     <>
 
-    <Navbar style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} bg='secondary' variant='dark' expand="lg">
+    <Navbar style={{borderRadius:"0.625rem", border:"2px solid #d63384"}} bg='secondary' variant='dark' expand="lg" fixed="top">
       <Container>
         <Navbar.Brand href="http://localhost:5173/">Pieces of life</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
