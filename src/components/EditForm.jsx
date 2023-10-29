@@ -52,7 +52,7 @@ const EditForm = () => {
     ImageHandler.updateImage(id, updatedData)
     .then(response => {
       if (response.status === 200) {
-          Swal.fire('Success', 'Image added successfully!', 'success');
+          Swal.fire('Success', 'Image updated successfully!', 'success');
       } else {
           // Puedes mostrar un mensaje más genérico o usar response.data para mostrar un mensaje específico
           Swal.fire('Error', 'Failed to add image.', 'error');
@@ -84,7 +84,7 @@ const EditForm = () => {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label htmlFor="imageName">Title</Form.Label>
-        <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} onChange={handleFieldChange} name="imageName" defaultValue={updatedImage.imageName} />
+        <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} onChange={handleFieldChange} name="imageName" defaultValue={updatedImage.imageName} maxLength={40} />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">

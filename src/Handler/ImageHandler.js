@@ -9,7 +9,7 @@ export const ImageHandler = {
 
         let image = {
             "imageName": newImage.imageName,  
-            "category": newImage.category,
+            "categoryItemId": newImage.category,
             "imageSource": newImage.imageSource,
         }
         return ImageService.submitImage(image);
@@ -30,7 +30,7 @@ export const ImageHandler = {
         let updatedImageStructure = {
             "imageName": updatedData.imageName,
             "imageSource": updatedData.imageSource,
-            "category": updatedData.category,
+            "idCategory": updatedData.category,
             "id":updatedData.id,
         }
 

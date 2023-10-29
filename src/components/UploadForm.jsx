@@ -36,7 +36,7 @@ function UpLoadForm() {
   .catch(error => {
       Swal.fire('Error', 'An error occurred while adding the image.', 'error');
   });}
-  resetForm()
+  
 }
 
 
