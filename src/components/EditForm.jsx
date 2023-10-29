@@ -55,11 +55,11 @@ const EditForm = () => {
           Swal.fire('Success', 'Image updated successfully!', 'success');
       } else {
           // Puedes mostrar un mensaje más genérico o usar response.data para mostrar un mensaje específico
-          Swal.fire('Error', 'Failed to add image.', 'error');
+          Swal.fire('Error', 'Failed to update image.', 'error');
       }
   })
   .catch(error => {
-      Swal.fire('Error', 'An error occurred while adding the image.', 'error');
+      Swal.fire('Error', 'An error occurred while updating the image.', 'error');
   });}
 
 
