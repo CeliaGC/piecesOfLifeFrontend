@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
-import React, { useState } from 'react';
-import Alert from 'react-bootstrap/Alert';
-import ImageHandler from '../handler/ImageHandler';
+import React, { useState, useEffect } from 'react';
+import {ImageHandler} from '../Handler/ImageHandler';
+import { CategoriesHandler } from '../Handler/CategoriesHandler';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,16 @@ function UpLoadForm() {
 
     const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm();
     const [imageUrl, setImageUrl] = useState('');
+    const [categories, setCategories] = useState([]);
+
+  useEffect(() => {getData();}, []);
+
+  const getData = async () => {
+    const data = await CategoriesHandler.loadCategories();
+    setCategories(data);
+   
+  };
+ console.log (categories)
 
 
   const onSubmit = (data) => {
