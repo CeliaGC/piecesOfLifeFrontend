@@ -88,7 +88,7 @@ function UpLoadForm() {
   };
 
   const handleSaveCategory = () => {
-    if (newCategory = ""){
+    if (!newCategory){
       Swal.fire('Every category must have a name')
     }else{
     CategoriesHandler.addCategory({ categoryName: newCategory })
