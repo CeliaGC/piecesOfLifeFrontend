@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 
 function UpLoadForm() {
 
-    const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm();
+    const { register, handleSubmit, formState: { errors }, setValue, getValues, reset } = useForm();
     const [imageUrl, setImageUrl] = useState('');
     const [categories, setCategories] = useState([]);
     const [addCategory, setAddCategory] = useState(false);
@@ -50,6 +50,8 @@ function UpLoadForm() {
     .then(response => {
       if (response.status === 200) {
           Swal.fire('Success', 'Image added successfully!', 'success');
+          reset();
+          setImageUrl('');
       } else {
           // Puedes mostrar un mensaje más genérico o usar response.data para mostrar un mensaje específico
           Swal.fire('Error', 'Failed to add image.', 'error');
