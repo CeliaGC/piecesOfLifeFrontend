@@ -88,8 +88,17 @@ function UpLoadForm() {
   };
 
   const handleSaveCategory = () => {
+    if (newCategory = ""){
+      Swal.fire('Every category must have a name')
+    }else{
     CategoriesHandler.addCategory({ categoryName: newCategory })
       .then(response => {
+        if (response.status === 200) {
+          Swal.fire('Success', 'Category added successfully!', 'success');
+      } else {
+          // Puedes mostrar un mensaje más genérico o usar response.data para mostrar un mensaje específico
+          Swal.fire('Error', 'Failed to add category.', 'error');
+      }
         // Actualizar la lista de categorías
         getData();
         // Reseteamos los estados
@@ -97,8 +106,8 @@ function UpLoadForm() {
         setNewCategory('');
       })
       .catch(error => {
-        console.error("Hubo un error al agregar la categoría:", error);
-      });
+        Swal.fire('Error', 'An error occurred while adding the category.', 'error');
+      });}
   };
 
 
