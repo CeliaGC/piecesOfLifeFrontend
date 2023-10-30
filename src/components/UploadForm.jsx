@@ -17,15 +17,27 @@ function UpLoadForm() {
     const { register, handleSubmit, formState: { errors }, setValue, getValues } = useForm();
     const [imageUrl, setImageUrl] = useState('');
     const [categories, setCategories] = useState([]);
+    const [addCategory, setAddCategory] = useState(false);
+    const [newCategory, setNewCategory] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
+  
 
   useEffect(() => {getData();}, []);
 
   const getData = async () => {
     const data = await CategoriesHandler.loadCategories();
+    // if (data.length > 0) {
+    //   setSelectedCategory(data[0].categoryName);
+    // }
     setCategories(data);
    
   };
- console.log (categories)
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+    handleAddCategoryOption(e); // Función ya existente para manejar la opción de "Add Category"
+  };
+
 
 
   const onSubmit = (data) => {
@@ -50,7 +62,6 @@ function UpLoadForm() {
 }
 
 
-
   const handleUploadClick = () => {
     const widget = window.cloudinary.createUploadWidget({
         cloudName: 'dvx5np4ma',
@@ -68,6 +79,29 @@ function UpLoadForm() {
     widget.open();
   }
 
+  const handleAddCategoryOption = (e) => {
+    if (e.target.value === "Add Category") {
+      setAddCategory(true);
+    } else {
+      setAddCategory(false);
+    }
+  };
+
+  const handleSaveCategory = () => {
+    CategoriesHandler.addCategory({ categoryName: newCategory })
+      .then(response => {
+        // Actualizar la lista de categorías
+        getData();
+        // Reseteamos los estados
+        setAddCategory(false);
+        setNewCategory('');
+      })
+      .catch(error => {
+        console.error("Hubo un error al agregar la categoría:", error);
+      });
+  };
+
+
 
    return(
     <>
@@ -83,16 +117,36 @@ function UpLoadForm() {
           <Form.Control name='imageName' style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} {...register("imageName",)} maxLength={40} />
        
         </Form.Group>
-  
+
         <Form.Group className="mb-3" controlId="category">
-          <Form.Label htmlFor="category">Collection</Form.Label>
-                      <select style={{borderRadius:"0.0625rem", backgroundColor:"rgba(255, 233, 246, 1)"}}{...register("category", )} name="category" >
-                        <option value="nature">Nature</option>
-                        <option value="society">Society</option>
-                        <option value="science">Science</option>
-                      </select>
-                      
-        </Form.Group>
+        <Form.Label htmlFor="category">Collection</Form.Label>
+        <select
+          value={selectedCategory}
+          style={{ borderRadius: "0.0625rem", backgroundColor: "rgba(255, 233, 246, 1)" }}
+          {...register("category")}
+          name="category"
+          onChange={handleCategoryChange}
+        >
+           <option value=""></option>
+          {
+            categories.map(c => (
+              <option key={c.id} value={c.categoryName}>{c.categoryName}</option>
+            ))
+          }
+          <option>Add Category</option>
+        </select>
+        {addCategory && (
+          <>
+          <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}}
+            type="text"
+            placeholder="New Category"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+          />
+          <Button onClick={handleSaveCategory} style={{borderRadius:"0.625rem"}} variant="secondary">Add Category</Button>
+          </>
+        )}
+      </Form.Group>
   
         <Form.Group className="mb-3" controlId="imageSource">
           <Form.Label htmlFor="imageSource"></Form.Label>
@@ -119,15 +173,6 @@ function UpLoadForm() {
     
    )
 }
-
-
-
-
-
-
-
-
-
 
 export default UpLoadForm
     

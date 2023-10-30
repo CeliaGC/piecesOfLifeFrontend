@@ -20,9 +20,9 @@ const apiClient = axios.create({
     //     let image = response.data;
     //     return image;
     // },
-    // async submitImage(newImage){
-    //     return await apiClient.post("/Image/Post", newImage)
-    // },
+    async submitCategory(newCategory){
+        return await apiClient.post("/Category/Post", newCategory)
+    },
     // async deleteImage(id){
     //     axios.delete('https://localhost:7200/Image/Delete?Id=' + id)
     // },

@@ -1,6 +1,6 @@
 import Alert from 'react-bootstrap/Alert';
 import { useLoaderData, useParams } from 'react-router-dom';
-import ImageHandler from '../handler/ImageHandler';
+import ImageHandler from '../Handler/ImageHandler';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';

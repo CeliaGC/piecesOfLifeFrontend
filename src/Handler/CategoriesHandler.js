@@ -8,7 +8,7 @@ export const CategoriesHandler = {
 
 
         let category = {
-            "categoryName": newImage.imageName,  
+            "categoryName": newCategory.categoryName,  
         }
         return CategoriesService.submitCategory(category);
         

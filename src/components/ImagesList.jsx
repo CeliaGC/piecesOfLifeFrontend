@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import ImageHandler from '../Handler/ImageHandler'
+import CategoriesHandler from '../Handler/CategoriesHandler';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -14,6 +15,7 @@ function ImagesList() {
   const [images, setImages] = useState([]);
   const [searchValues, setSearchValues] = useState([]);
   const [filteredImages, setFilteredImages] = useState(images);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {getData();}, []);
 
@@ -34,7 +36,10 @@ function ImagesList() {
   const getData = async () => {
     const data = await ImageHandler.loadImages();
     setImages(data);
+    const categoriesData = await CategoriesHandler.loadCategories();
+    setCategories(categoriesData)
   };
+  console.log(categories)
 
   const handleCheckBox = (event) => {
     let searchInput = event.target.value;
@@ -48,9 +53,6 @@ function ImagesList() {
     }
   }
 let myImages = images;
-  
-  console.log(filteredImages)
-  console.log(images)
 
   const deleteImage = (id) => {
 
@@ -80,16 +82,21 @@ let myImages = images;
             Collections
           </Dropdown.Toggle>
           <Dropdown.Menu variant='dark' style={{ backgroundColor: "dimgrey" }}>
-            <ToggleButtonGroup type="checkbox" variant="light" style={{ justifyContent: "space-evenly" }}>
-              <ToggleButton id="tbg-btn-1" variant='ligth' value={"society"} onChange={handleCheckBox} style={{ backgroundColor: "palevioletred", width: "70%" }}>
-                Society
+            <ToggleButtonGroup type="checkbox" variant="light" style={{ justifyContent: "space-evenly" }} >
+              {
+                categories.map(c => (
+                  <ToggleButton onChange={handleCheckBox} key={c.idCategory} id={c.idCategory} variant='ligth' value={c.categoryName} style={{ backgroundColor: "palevioletred", width: "70%" }}>
+                {c.categoryName}
               </ToggleButton>
-              <ToggleButton id="tbg-btn-2" variant='ligth' value={"science"} onChange={handleCheckBox} style={{ backgroundColor: "palevioletred", width: "70%" }}>
+                ))
+              }
+              
+              {/* <ToggleButton id="tbg-btn-2" variant='ligth' value={"science"} onChange={handleCheckBox} style={{ backgroundColor: "palevioletred", width: "70%" }}>
                 Science
               </ToggleButton>
               <ToggleButton id="tbg-btn-3" variant='ligth' value={"nature"} onChange={handleCheckBox} style={{ backgroundColor: "palevioletred", width: "70%" }}>
                 Nature
-              </ToggleButton>
+              </ToggleButton> */}
             </ToggleButtonGroup>
           </Dropdown.Menu>
         </Dropdown>
