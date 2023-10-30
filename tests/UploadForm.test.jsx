@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import UpLoadForm from "../src/components/UploadForm";
 import { MemoryRouter } from "react-router-dom";
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
 test('Form renders without crashing', () => { 
     render(
