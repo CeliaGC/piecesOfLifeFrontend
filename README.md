@@ -3,6 +3,9 @@
 <h2>Project</h2>
 
 This is a simple-to-use web application proposal for managing image collections. The platform allows you to store images in the cloud, eliminating the need to store them locally, which can be a data flow burden. Subsequently, image collections are stored in a relational database that the user manages within a gallery via URLs.
+
+To provide a quick immersion in the application, there is a version of the app in the dev/fake-api-axios branch with all the features facilitated by a fake JSON server API, so you don't have to generate a local database if you prefer not to.
+
 <h2>Design</h2>
 
 The design is conceived for a smooth and intuitive user experience, with an enticing landing page that briefly explains the application's context and directly links to the image submission form view. In this form, we can add an image, give it a title, and place it within a collection. The image is uploaded using a Cloudinary widget that offers multiple options:
