@@ -4,7 +4,7 @@
 
 This is a simple-to-use web application proposal for managing image collections. The platform allows you to store images in the cloud, eliminating the need to store them locally, which can be a data flow burden. Subsequently, image collections are stored in a relational database that the user manages within a gallery via URLs.
 
-To provide a quick immersion in the application, there is a version of the app in the dev/fake-api-axios branch with all the features facilitated by a fake JSON server API, so you don't have to generate a local database if you prefer not to.
+To provide a quick immersion in the application, there is a version of the app in the dev/fake-api-axios branch with its own READme and all the features facilitated by a fake JSON server API, so you don't have to generate a local database if you prefer not to.
 
 <h2>Design</h2>
 
