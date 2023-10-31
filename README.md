@@ -29,8 +29,6 @@ The data is stored locally in a database in SQL Server Management Studio, which,
 Git Version Control system
 Git Hub plattform
 
-<h3>Front-end</h3>
-
 <h4>Tools</h4>
 Visual Studio code
 
@@ -45,19 +43,7 @@ React Bootstrap
 Axios
 Reactrouter DOM
 React testing Library
-
-<h3>Back-end</h3>
-
-<h4>Tools</h4>
-Microsoft Visual Studio code
-Microsoft SQL Server Management Studio 
-
-<h4>Lenguages</h4>
-C#
-SQL Languages
-
-<h4>Framework</h4>
-AspNET.Core Entity Framework 6
+Json server
 
 <h2>Install the project</h2>
 
@@ -65,34 +51,10 @@ AspNET.Core Entity Framework 6
 
 https://github.com/MyFaveImagesProject/MyFaveImgFront.git
 
-https://github.com/MyFaveImagesProject/MyFaveImgBack.git
-
-<h3>Back-end</h3>
-
-In Microsoft Visual Studio Code:
-Packages should be installed automatically when cloning the repository, but in case of problems, they can be checked in Nugget Package Manager. The ones that should be installed are:
-- Coverlet collector 3.2.0
-- Microsoft.AspNet.WebApi.Cors 5.2.9 (In API project)
-- SwashBucle.AspNetCore 6.5.0 (In API project)
-- MicrosoftEntityFramework Core 7.0.0 (In Entities project)
-- Microsoft.EntityFrameworkCore.SqlServer 7.0.0 (In Entities project, Data)
-- Microsoft.EntityFrameworkCore.Tools 7.0.0 (In Data project)
-- Microsoft.Extensions.Configuration 7.0.0.0 (In Data project)
-- Microsoft.Extensions.Configuration.Json 7.0.0.0 (In Data project)
-- Microsoft.NET.Test.Sdk 17.5.0 (In ProjectTest project)
-- MSTest.TestAdapter 3.0.2 (In ProjectTest project)
-- MSTest.TestFramework 3.0.2 (In Proyectest project)
--Add new connection in Server Explorer
--Open Microsoft SQL Server Management Studio and connect to the server.
-In Microsoft Visual Studio Code, to connect to the database, run in Package Nuget Console the commands:
-- add-migration Initial -Project Data
-- update-database
--Run the API solution (it should always be running)
-
-<h3>Front-end</h3>
-
 In Visual Studio Code run the command
 - npm i
+- npm run dev
+- json-server --watch db.json
 
 That should install all the necessary dependencies, but if you have any problems with the installation, these are the commands for each installed dependency
 - npm install
@@ -106,6 +68,7 @@ That should install all the necessary dependencies, but if you have any problems
 - npm install --save-dev jsdom 
 - npm install --save-dev @testing-library/jest-dom
 - npm install --save-dev @testing-library/react
+- npm instal json-server
 
 
 <h2>Developer</h2>
