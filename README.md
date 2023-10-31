@@ -21,8 +21,8 @@ From each image we can access an enlarged view and the log editor and also delet
 
 <h2>Development</h2>
 
-Both front-end and back-end development is arranged in several layers that make the data, logic and rendering independent, so that the application is scalable.
-The data is stored locally in a database in SQL Server Management Studio, which, through the API created in Microsoft Visual Studio Code ("MFI-back" solution), is communicated and printed in the browser through the "My Favourite Images" app.
+The app is arranged in several layers that make the data, logic and rendering independent, so that the application is scalable.
+The data is stored locally in a database in a json file which, through the callings of axios library to JSON Server fake API, is communicated and printed in the browser through the "Pieces of life" app.
 
 <h2>Stack</h2>
 
