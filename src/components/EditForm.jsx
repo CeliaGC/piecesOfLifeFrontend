@@ -42,14 +42,14 @@ const EditForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedData = { ...image, ...updatedImage };
-    const { id } = image[0];
+    const { id } = image.id;
 
 
     if (!updatedData.imageName || !updatedData.category|| !updatedData.imageSource){
       Swal.fire('Must fill every field')
     }else{
 
-    ImageHandler.updateImage(id, updatedData)
+    ImageHandler.updateImage(updatedData.id, updatedData)
     .then(response => {
       if (response.status === 200) {
           Swal.fire('Success', 'Image updated successfully!', 'success');
@@ -73,23 +73,22 @@ const EditForm = () => {
     return (
       <>
 
-{image.map(i => (
 
   <Form style={{borderRadius:"0.625rem", border:"2px solid #d63384", height:"80%", width:"80%", marginTop:"10%", marginLeft:"10%", backgroundColor:"rgba(153, 153, 153, 0.7)"}} onSubmit={handleSubmit}>
-  <h2 style={{backgroundColor:"rgba(153, 153, 153, 1)", borderRadius:"0.625rem", border:"2px solid #d63384"}}>Editing {i.imageName} </h2>
+  <h2 style={{backgroundColor:"rgba(153, 153, 153, 1)", borderRadius:"0.625rem", border:"2px solid #d63384"}}>Editing {image.imageName} </h2>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label htmlFor="id"></Form.Label>
-        <Form.Control type="hidden" defaultValue={updatedImage.id}/>
+        <Form.Control type="hidden" defaultValue={image.id}/>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label htmlFor="imageName">Title</Form.Label>
-        <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} onChange={handleFieldChange} name="imageName" defaultValue={updatedImage.imageName} maxLength={40} />
+        <Form.Control style={{backgroundColor:"rgba(255, 233, 246, 1)",marginLeft:"10%", width:"80%"}} onChange={handleFieldChange} name="imageName" defaultValue={image.imageName} maxLength={40} />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label htmlFor="category">Collection</Form.Label>
-                    <select style={{borderRadius:"0.0625rem", backgroundColor:"rgba(255, 233, 246, 1)"}} onChange={handleFieldChange} name="category" defaultValue={updatedImage.category}>
+                    <select style={{borderRadius:"0.0625rem", backgroundColor:"rgba(255, 233, 246, 1)"}} onChange={handleFieldChange} name="category" defaultValue={image.category}>
                       <option value="nature">Nature</option>
                       <option value="society">Society</option>
                       <option value="science">Science</option>
@@ -103,7 +102,7 @@ const EditForm = () => {
           type='text'
           name="imageSource"
           value={imageUrl} 
-          placeholder={updatedImage.imageSource}
+          placeholder={image.imageSource}
           readOnly
           onChange={handleFieldChange}
           />
@@ -119,7 +118,7 @@ const EditForm = () => {
       </Link>
             </Form>
 
-          ))}    
+        
       </>
     );
   };

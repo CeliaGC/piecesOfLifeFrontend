@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: 'https://localhost:7200/',
+    baseURL: 'http://localhost:3000/',
     withCredentials: false,
     headers: {
       Accept: 'application/json',
@@ -11,7 +11,7 @@ const apiClient = axios.create({
 
  export const CategoriesService = {
     async getCategories() {
-        let response = await apiClient.get("/Category/GetAllCategories");
+        let response = await apiClient.get("/categories");
         let allCategories = response.data;
         return allCategories;
     },
@@ -21,7 +21,7 @@ const apiClient = axios.create({
     //     return image;
     // },
     async submitCategory(newCategory){
-        return await apiClient.post("/Category/Post", newCategory)
+        return await apiClient.post("/categories", newCategory)
     },
     // async deleteImage(id){
     //     axios.delete('https://localhost:7200/Image/Delete?Id=' + id)

@@ -48,7 +48,7 @@ function UpLoadForm() {
 
     ImageHandler.addImage(data)
     .then(response => {
-      if (response.status === 200) {
+      if (response.status === 201) {
           Swal.fire('Success', 'Image added successfully!', 'success');
           reset();
           setImageUrl('');
@@ -95,8 +95,9 @@ function UpLoadForm() {
     }else{
     CategoriesHandler.addCategory({ categoryName: newCategory })
       .then(response => {
-        if (response.status === 200) {
+        if (response.status === 201) {
           Swal.fire('Success', 'Category added successfully!', 'success');
+          reset()
       } else {
           // Puedes mostrar un mensaje más genérico o usar response.data para mostrar un mensaje específico
           Swal.fire('Error', 'Failed to add category.', 'error');

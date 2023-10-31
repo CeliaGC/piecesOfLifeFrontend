@@ -9,9 +9,3 @@ test('should render app logo', () => {
     expect(logoElement).toBeInTheDocument(); 
 });
 
-// describe('MyNavbar', () => {
-//     it('2 buttons exists', () => {
-//       const { getByRole } = render(<MyNavbar />);
-//       expect(getByRole('img',(name=)).length).toBe(1);
-//     });
-//   });

@@ -36,14 +36,14 @@ export const ImageHandler = {
 
         return ImageService.updateImage(id, updatedImageStructure);
     },
-    async fetchImages() {
-        const images = await ImageHandler.loadImages();
-        return { images };
-    },
-    async fetchImage({ params }) {
-        const image = await ImageHandler.loadImage(params. imageName);
-        return { image };
-    },
+    // async fetchImages() {
+    //     const images = await ImageHandler.loadImages();
+    //     return { images };
+    // },
+    // async fetchImage({ params }) {
+    //     const image = await ImageHandler.loadImage(params. id);
+    //     return { image };
+    // },
 }
 
 export default ImageHandler

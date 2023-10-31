@@ -1,0 +1,70 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "imageName": "Hello World",
+      "category": "society",
+      "imageSource": "https://res.cloudinary.com/dvx5np4ma/image/upload/v1698754099/ezztjhyhaeqvorbofmea.jpg"
+    },
+    {
+      "id": 2,
+      "imageName": "Holi, life and colours",
+      "category": "Society",
+      "imageSource": "https://res.cloudinary.com/dvx5np4ma/image/upload/v1698132860/holi_phjzlr.jpg"
+    },
+    {
+      "id": 3,
+      "imageName": "Give the streets back to children",
+      "category": "Society",
+      "imageSource": "https://res.cloudinary.com/dvx5np4ma/image/upload/v1698132860/hopscotch_x6rq5z.jpg"
+    },
+    {
+      "id": 4,
+      "imageName": "Homebody bees",
+      "category": "Nature",
+      "imageSource": "https://res.cloudinary.com/dvx5np4ma/image/upload/v1698132860/homebodyBees_uf99oa.jpg"
+    },
+    {
+      "id": 5,
+      "imageName": "Interestellar kindergarten",
+      "category": "Science",
+      "imageSource": "https://res.cloudinary.com/dvx5np4ma/image/upload/v1698132860/kindergarten_vhi9ee.avif"
+    },
+    {
+      "imageName": "Study hard little boy",
+      "category": "Society",
+      "imageSource": "https://res.cloudinary.com/dvx5np4ma/image/upload/v1698750092/xmw0odpkgmsxnnyxfzns.jpg",
+      "id": 6
+    },
+    {
+      "imageName": "Study hard little boy",
+      "category": "Society",
+      "imageSource": "https://res.cloudinary.com/dvx5np4ma/image/upload/v1698750092/xmw0odpkgmsxnnyxfzns.jpg",
+      "id": 7
+    },
+    {
+      "imageName": "Fight like a woman",
+      "category": "Society",
+      "imageSource": "https://res.cloudinary.com/dvx5np4ma/image/upload/v1698755171/jko2uahfmjdzozopkf8a.jpg",
+      "id": 8
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "categoryName": "Nature"
+    },
+    {
+      "categoryName": "Society",
+      "id": 2
+    },
+    {
+      "categoryName": "Science",
+      "id": 3
+    },
+    {
+      "categoryName": "Family",
+      "id": 4
+    }
+  ]
+}

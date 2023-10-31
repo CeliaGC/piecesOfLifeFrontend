@@ -34,8 +34,9 @@ function ImagesList() {
   }, [images, searchValues]);
 
   const getData = async () => {
-    const data = await ImageHandler.loadImages();
-    setImages(data);
+    
+      const data = await ImageHandler.loadImages();
+      setImages(data);
     const categoriesData = await CategoriesHandler.loadCategories();
     setCategories(categoriesData)
   };

@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
                         element: <UploadImage />,
                     },  
                     {
-                        path: '/editImage/:imageName',
+                        path: '/editImage/:id',
                         element: <EditImage />,
                         loader: fetchImage,
                     },    
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
                     {
                         path: '/gallery',
                         element: <Gallery />,
-                        loader: fetchImage,
+                        // loader: fetchImage,
                     },    
                 ]
             },
@@ -48,6 +48,6 @@ async function fetchImages() {
 }
 
 async function fetchImage({ params }) {
-    const image = await ImageHandler.loadImage(params. imageName);
+    const image = await ImageHandler.loadImage(params. id);
     return { image };
 }
